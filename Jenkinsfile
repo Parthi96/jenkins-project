@@ -16,12 +16,19 @@ pipeline {
 				   }
 			}
         }
-		stage('Checkstyle') {
-                    steps {
-                        bat script: 'mvn checkstyle:check'
-                        recordIssues(tools: [checkStyle(reportEncoding: 'UTF-8')])
-                    }
-	    }				
+		stage('Quality Analysis') {
+            steps {
+                
+                parallel(
+                        "Integration Test": {
+                            echo 'Run integration tests'
+                        },
+                        "Sonar Scan": {
+                            bat script: "mvn sonar:sonar"
+                        }
+                )
+            }
+        }			
        
     }
 }
