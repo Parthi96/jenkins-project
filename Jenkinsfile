@@ -16,6 +16,11 @@ pipeline {
 				   }
 			}
         }
+		stage('Checkstyle') {
+                    steps {
+                        bat script: 'mvn checkstyle:check'
+                        
+                    }
        
     }
 }
