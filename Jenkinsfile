@@ -12,7 +12,7 @@ pipeline {
 			post{
 			       success{
 				           echo 'Archiving artifacts...'
-						   bat script: '**/*.war'
+						   archiveArtifact artifact: '**/*.war'
 				   }
 			}
         }
