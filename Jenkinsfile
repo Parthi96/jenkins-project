@@ -21,6 +21,7 @@ pipeline {
                         bat script: 'mvn checkstyle:check'
                         
                     }
+	    }				
        
     }
 }
