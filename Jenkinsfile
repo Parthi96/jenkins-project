@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
 			       echo 'Building the project...'
-                   bat script: 'mvn clean package'
+                   sh 'mvn clean package'
             }
 			post{
 			       success{
@@ -24,7 +24,7 @@ pipeline {
                             echo 'Run integration tests'
                         },
                         "Sonar Scan": {
-                            bat script: "mvn sonar:sonar"
+                            sh "mvn sonar:sonar"
                         }
                 )
             }
