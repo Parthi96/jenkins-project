@@ -5,18 +5,15 @@ pipeline {
      }			
      stages {
         stage('Build') {
-            steps {
-			       echo 'Building the project...'
-                   sh 'mvn clean package'
-            }
-			post{
-			       success{
-				           echo 'Archiving artifacts...'
-						   archiveArtifacts artifacts: '**/*.war'
-				   }
-			}
-        }
-		
+             steps {
+                sh 'mvn clean package'
+                sh 'pwd'
+                sh 'whoami'
+                sh "docker build -t webapp:${env.BUILD_ID} ."
+                sh 'docker login -u parthi1996 -p Parthi96$'
+                sh "docker tag webapp:${env.BUILD_ID} parthi1996/webapp:${env.BUILD_ID}"
+                sh "docker push parthi1996/webapp:${env.BUILD_ID}"
+            }	
         		
        
     }
