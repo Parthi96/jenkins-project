@@ -16,18 +16,7 @@ pipeline {
 				   }
 			}
         }
-		stage('Quality Analysis') {
-            steps {
-                
-                parallel(
-                        "Integration Test": {
-                            echo 'Run integration tests'
-                        },
-                        "Sonar Scan": {
-                            sh "mvn sonar:sonar"
-                        }
-                )
-            }
+		
         }			
        
     }
