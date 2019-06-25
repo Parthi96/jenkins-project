@@ -15,6 +15,6 @@ pipeline {
                 sh "docker push parthi1996/webapp:${env.BUILD_ID}"
             }	
         		
-       
+        }
     }
 }
